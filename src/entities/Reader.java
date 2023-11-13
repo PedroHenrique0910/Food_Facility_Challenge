@@ -4,82 +4,104 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Reader {
-	
-	private String nome;
-	private String tipo;
-	private String endereco;
-	private String tipoCardapio;
-	private Double latitude;
-	private Double longitude;
-	
-	public Reader() {
-	}
+public class Reader implements Comparable<Reader> {
+    
+    private String nome;
+    private String tipo;
+    private String endereco;
+    private String tipoCardapio;
+    private Double latitude;
+    private Double longitude;
+    private Double distancia; // Adição do campo de distância
 
-	public Reader(String nome, String tipo, String endereco, String tipoCardapio, Double latitude, Double longitude) {
-		this.nome = nome;
-		this.tipo = tipo;
-		this.endereco = endereco;
-		this.tipoCardapio = tipoCardapio;
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
-	
-	public String getNome() {
-		return nome;
-	}
+    public Reader() {
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public Reader(String nome, String tipo, String endereco, String tipoCardapio, Double latitude, Double longitude) {
+        this.nome = nome;
+        this.tipo = tipo;
+        this.endereco = endereco;
+        this.tipoCardapio = tipoCardapio;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
-	public String getTipo() {
-		return tipo;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public String getEndereco() {
-		return endereco;
-	}
+    public String getTipo() {
+        return tipo;
+    }
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
-	public String getTipoCardapio() {
-		return tipoCardapio;
-	}
+    public String getEndereco() {
+        return endereco;
+    }
 
-	public void setTipoCardapio(String tipoCardapio) {
-		this.tipoCardapio = tipoCardapio;
-	}
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
-	public Double getLatitude() {
-		return latitude;
-	}
+    public String getTipoCardapio() {
+        return tipoCardapio;
+    }
 
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
-	}
+    public void setTipoCardapio(String tipoCardapio) {
+        this.tipoCardapio = tipoCardapio;
+    }
 
-	public Double getLongitude() {
-		return longitude;
-	}
+    public Double getLatitude() {
+        return latitude;
+    }
 
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
-	}
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
 
-	@Override
-	public String toString() {
-		return "[nome=" + nome + ", tipo=" + tipo + ", endereco=" + endereco + ", tipoCardapio=" + tipoCardapio
-				+ ", latitude=" + String.format("%.2f", latitude) + ", longitude=" + String.format("%.3f", longitude)  + "]";
-	}
+    public Double getLongitude() {
+        return longitude;
+    }
 
-	
-	}
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(Double distancia) {
+        this.distancia = distancia;
+    }
+
+    @Override
+    public String toString() {
+        String distanciaFormatada;
+        if (distancia >= 1000) {
+            double distanciaEmKm = distancia / 1000.0;
+            distanciaFormatada = String.format("%.2f", distanciaEmKm) + " km";
+        } else {
+            distanciaFormatada = String.format("%.2f", distancia) + " metros";
+        }
+
+        return "Restaurante: " + nome + "\nEndereço: " + endereco + "\nCardápio: " + tipoCardapio + "\nDistância: " + distanciaFormatada + "\n";
+    }
+
+
+
+    // Implementação do método compareTo para a ordenação
+    @Override
+    public int compareTo(Reader outroReader) {
+        return this.distancia.compareTo(outroReader.getDistancia());
+    }
+}
 	
 
