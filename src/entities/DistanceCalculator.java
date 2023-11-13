@@ -47,7 +47,7 @@ public class DistanceCalculator {
 	    }
 
 	    public static double calculoDistancia(double userLatitude, double userLongitude, double latitude, double longitude) {
-	        double earthRadius = 6371;
+	        double earthRadius = 6371.0;
 
 	        double dLat = Math.toRadians(userLatitude - latitude);
 	        double dLng = Math.toRadians(userLongitude - longitude);

@@ -23,7 +23,13 @@ public class Program {
         String path = "C:\\temp\\Mobile_Food_Facility_Permit.csv";
         String linha = "";
         String divisor = ",";
-
+        
+        System.out.println("Olá! Bem vindo ao Food Facility!\nNessa aplicação vamos te mostrar 5 food trucks mais próximos de você com base na sua latitude e longitude!");
+        System.out.println();
+        System.out.print("Pressione" + " Enter" + " para continuar... ");
+        sc.nextLine();
+        System.out.println();
+        
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             linha = br.readLine();
             while ((linha = br.readLine()) != null) {
